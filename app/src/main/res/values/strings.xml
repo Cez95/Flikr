@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Flikr</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_search_activity">search_activity</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_photo_detail">Photo Detail</string>
+</resources>
