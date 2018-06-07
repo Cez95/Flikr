@@ -10,17 +10,18 @@
 
     <ImageView
         android:id="@+id/thumbnail"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
         android:layout_weight="1"
+        android:contentDescription="@string/browse_image_description"
+        android:scaleType="fitStart"
         app:srcCompat="@drawable/place_holder" />
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:text="TextView"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        tools:text="TextView" />
 </LinearLayout>

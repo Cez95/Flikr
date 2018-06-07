@@ -14,6 +14,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+// Recycler view adapters are JUST LIKE CELLS in swift
 class FlikrRecyclerViewAdapter extends RecyclerView.Adapter<FlikrRecyclerViewAdapter.FlickrImageViewHolder> {
     private static final String TAG = "FlikrRecyclerViewAdapte";
     private List<Photo> mPhotoList;
@@ -38,14 +39,20 @@ class FlikrRecyclerViewAdapter extends RecyclerView.Adapter<FlikrRecyclerViewAda
     @Override
     public void onBindViewHolder(@NonNull FlickrImageViewHolder holder, int position) {
         // Called by the layout manager when it wants new data in a current row
-        Photo photoItem = mPhotoList.get(position);
-        Log.d(TAG, "onBindViewHolder: " + photoItem.getTitle() + " --> " + position);
-        Picasso.get().load(photoItem.getImage())
-                .error(R.drawable.place_holder)
-                .placeholder(R.drawable.place_holder)
-                .into(holder.thumbnail);
+        if(mPhotoList == null || mPhotoList.size() == 0) { // Checks to see if there are photos that match your search
+            holder.thumbnail.setImageResource(R.drawable.place_holder);
+            holder.title.setText(R.string.empty_photo);
+        } else {
 
-        holder.title.setText(photoItem.getTitle());
+            Photo photoItem = mPhotoList.get(position);
+            Log.d(TAG, "onBindViewHolder: " + photoItem.getTitle() + " --> " + position);
+            Picasso.get().load(photoItem.getImage())
+                    .error(R.drawable.place_holder)
+                    .placeholder(R.drawable.place_holder)
+                    .into(holder.thumbnail);
+
+            holder.title.setText(photoItem.getTitle());
+        }
 
     }
 
@@ -53,7 +60,7 @@ class FlikrRecyclerViewAdapter extends RecyclerView.Adapter<FlikrRecyclerViewAda
     public int getItemCount() {
         Log.d(TAG, "getItemCount: called");
 
-        return ((mPhotoList != null) && (mPhotoList.size() != 0) ? mPhotoList.size() : 0);
+        return ((mPhotoList != null) && (mPhotoList.size() != 0) ? mPhotoList.size() : 1);
     }
 
 
